@@ -5,15 +5,15 @@ const CACHE_NAME = 'flutter-app-cache';
 const RESOURCES = {
   "index.html": "d6a6ddd9b7c6f58e07e55527345d8fb4",
 "/": "d6a6ddd9b7c6f58e07e55527345d8fb4",
-"main.dart.js": "1631d8ebeef6d3b58d290648c6175447",
+"main.dart.js": "7dc2030e10bd3abf7e80bc993f4dc94a",
 "icons/Icon-192.png": "ac9a721a12bbc803b44f645561ecb1e1",
 "icons/Icon-512.png": "96e752610906ba2a93c65f8abe1645f1",
 "manifest.json": "201e463de18f3730d830ac41a05dc563",
 "assets/AssetManifest.json": "2efbb41d7877d10aac9d091f58ccd7b9",
-"assets/NOTICES": "e0dc4b2e8414a660068db13722f9205d",
-"assets/FontManifest.json": "01700ba55b08a6141f33e168c4a6c22f",
+"assets/NOTICES": "2a675148cfcbf09374662667748033a6",
+"assets/FontManifest.json": "dc3d03800ccca4601324923c0b1d6d57",
 "assets/packages/cupertino_icons/assets/CupertinoIcons.ttf": "115e937bb829a890521f72d2e664b632",
-"assets/fonts/MaterialIcons-Regular.ttf": "56d3ffdef7a25659eab6a68a3fbfaf16"
+"assets/fonts/MaterialIcons-Regular.otf": "a68d2a28c526b3b070aefca4bac93d25"
 };
 
 // The application shell files that are downloaded before a service worker can
@@ -104,7 +104,7 @@ self.addEventListener("fetch", (event) => {
   if (event.request.url == origin || event.request.url.startsWith(origin + '/#')) {
     key = '/';
   }
-  // If the URL is not the the RESOURCE list, skip the cache.
+  // If the URL is not the RESOURCE list, skip the cache.
   if (!RESOURCES[key]) {
     return event.respondWith(fetch(event.request));
   }
@@ -127,11 +127,11 @@ self.addEventListener("fetch", (event) => {
 self.addEventListener('message', (event) => {
   // SkipWaiting can be used to immediately activate a waiting service worker.
   // This will also require a page refresh triggered by the main worker.
-  if (event.message == 'skipWaiting') {
+  if (event.data === 'skipWaiting') {
     return self.skipWaiting();
   }
 
-  if (event.message = 'downloadOffline') {
+  if (event.message === 'downloadOffline') {
     downloadOffline();
   }
 });
