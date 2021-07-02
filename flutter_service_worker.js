@@ -6,15 +6,15 @@ const RESOURCES = {
   "version.json": "99b3b74c73774ea6166c3ceb3d94cc25",
 "index.html": "85fe4db3c3582b9ca170b452bfe58274",
 "/": "85fe4db3c3582b9ca170b452bfe58274",
-"main.dart.js": "ea924f3cfb8ca33f9780cf305896ade4",
+"main.dart.js": "867ca4f01257651ceb87a72e624830bf",
 "icons/Icon-192.png": "ac9a721a12bbc803b44f645561ecb1e1",
 "icons/Icon-512.png": "96e752610906ba2a93c65f8abe1645f1",
 "manifest.json": "201e463de18f3730d830ac41a05dc563",
 "assets/AssetManifest.json": "2efbb41d7877d10aac9d091f58ccd7b9",
-"assets/NOTICES": "364778fe9697b7b9a14c66b5bd62a131",
+"assets/NOTICES": "ebdc536f92c56cad2f399996623c2c39",
 "assets/FontManifest.json": "dc3d03800ccca4601324923c0b1d6d57",
 "assets/packages/cupertino_icons/assets/CupertinoIcons.ttf": "6d342eb68f170c97609e9da345464e5e",
-"assets/fonts/MaterialIcons-Regular.otf": "1288c9e28052e028aba623321f7826ac"
+"assets/fonts/MaterialIcons-Regular.otf": "4e6447691c9509f7acdbf8a931a85ca1"
 };
 
 // The application shell files that are downloaded before a service worker can
@@ -32,7 +32,7 @@ self.addEventListener("install", (event) => {
   return event.waitUntil(
     caches.open(TEMP).then((cache) => {
       return cache.addAll(
-        CORE.map((value) => new Request(value + '?revision=' + RESOURCES[value], {'cache': 'reload'})));
+        CORE.map((value) => new Request(value, {'cache': 'reload'})));
     })
   );
 });
